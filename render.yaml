@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: smiley-cymor-md
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: SESSION
+        sync: false        # paste your cymor... session ID in the Render dashboard
+      - key: DEV
+        value: "254113821327"
+      - key: BOTNAME
+        value: SMILEY CYMOR MD
+      - key: NODE_VERSION
+        value: "22"

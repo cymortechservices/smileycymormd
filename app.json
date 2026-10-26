@@ -1,0 +1,48 @@
+{
+  "name": "SMILEY-CYMOR-MD",
+  "description": "SMILEY CYMOR MD - WhatsApp bot by Legendary Smiley Cymor. No one does it better than me.",
+  "stack": "heroku-26",
+  "keywords": [
+    "bot",
+    "whatsapp-bot",
+    "smiley-cymor-md"
+  ],
+  "success_url": "/",
+  "env": {
+    "DEV": {
+      "description": "Owner phone number(s) without + or spaces, comma separated. Ex: 254113821327",
+      "value": "254113821327",
+      "required": false
+    },
+    "HEROKU_API": {
+      "description": "Put a Heroku api key here, will be required to update bot in your Dm",
+      "required": false
+    },
+    "SESSION": {
+      "description": "Paste your SMILEY CYMOR MD Session ID here (starts with cymor). Get it from the pair page.",
+      "required": true
+    },
+    "APP_NAME": {
+      "description": "Input your app name that you put above, Must be in small letters.",
+      "required": false
+    },
+    "BOTNAME": {
+      "description": "Bot display name",
+      "value": "SMILEY CYMOR MD",
+      "required": false
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0"
+    }
+  ]
+}
