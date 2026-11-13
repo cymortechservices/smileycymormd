@@ -431,7 +431,7 @@ module.exports = [
     const axios = require('axios');
     const { appname, herokuapi } = require('../set.js');
     const GH_REPO = require('../brand').repo;
-    if (!GH_REPO) return reply('❌ Set GITHUB_REPO=yourname/smiley-cymor-md in your config vars first.');
+    if (!GH_REPO) return reply('❌ Set GITHUB_REPO=cymortechservices/smileycymormd in your config vars first.');
 
     // ── Check env vars are set ───────────────────────────────────────────
     if (!appname || !herokuapi) {

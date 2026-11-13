@@ -22,5 +22,5 @@ module.exports = {
 
   // Deployment links (set these as environment variables, see GO-LIVE.md)
   pairUrl: (process.env.PAIR_URL || '').replace(/\/+$/, ''),   // e.g. https://smiley-cymor-pair.onrender.com
-  repo: process.env.GITHUB_REPO || '',                           // e.g. yourname/smiley-cymor-md
+  repo: process.env.GITHUB_REPO || 'cymortechservices/smileycymormd',                           // e.g. cymortechservices/smileycymormd
 };

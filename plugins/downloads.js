@@ -308,6 +308,17 @@ async function fetchYtAudio(videoUrl, api) {
   if (api) add('api/audio', viaApi(`${api}/download/audio?url=${enc}`, 90000));
   add('xcasper', viaApi(`https://apis.xcasper.space/api/downloader/ytmp3?url=${enc}`, 90000));
   add('gifted', viaApi(`https://mcow.giftedtechnexus.workers.dev/api/yta?url=${enc}`));
+  add('giftedapi', viaApi(`https://api.giftedtech.co.ke/api/download/ytmp3?apikey=gifted&url=${enc}`));
+  add('siputzx', viaApi(`https://api.siputzx.my.id/api/d/ytmp3?url=${enc}`));
+  add('yupra', viaApi(`https://api.yupra.my.id/api/downloader/ytmp3?url=${enc}`));
+  add('nekolabs', viaApi(`https://api.nekolabs.web.id/downloader/youtube/v1?url=${enc}&format=mp3`));
+  // your own extra endpoints: YT_APIS="https://host/path?url={url},https://host2/x?link={url}"
+  String(process.env.YT_APIS || '').split(',').map(x => x.trim()).filter(Boolean).forEach((tpl, i) => add('custom' + (i + 1), viaApi(tpl.replace('{url}', enc))));
+  try { const ytdl = require('@distube/ytdl-core'); if (videoId) add('ytdl-core', async () => {
+    const info = await ytdl.getInfo(`https://www.youtube.com/watch?v=${videoId}`);
+    const f = ytdl.chooseFormat(info.formats, { quality: 'highestaudio', filter: 'audioonly' });
+    return { url: f.url, title: info.videoDetails.title };
+  }); } catch (_) {}
 
   const download = async (u) => axios.get(u, {
     responseType: 'arraybuffer', timeout: 120000, maxContentLength: 100 * 1024 * 1024,
@@ -473,9 +484,9 @@ module.exports = [
           const info = await yts({ videoId });
           videoTitle = info?.title || 'YouTube Audio';
         } else {
-          let search = await axios.get(`${api}/search/yts?query=${encodeURIComponent(text)}`);
-          let videos = search.data?.result;
-          if (!Array.isArray(videos) || videos.length === 0) {
+          const sr = await yts(text);
+          const videos = (sr && sr.videos) || [];
+          if (!videos.length) {
             return client.sendMessage(m.chat, { text: '❌ No results found.', edit: msg.key });
           }
           videoUrl = videos[0].url;
@@ -493,10 +504,10 @@ module.exports = [
 
         let fileName = `${videoTitle}`.replace(/[^\w\s.-]/gi, '') + '.' + song.ext;
         await client.sendMessage(m.chat, { audio: song.buffer, mimetype: song.mimetype, fileName }, { quoted: m });
-        await client.sendMessage(m.chat, { document: song.buffer, mimetype: song.mimetype, fileName }, { quoted: m });
         await client.sendMessage(m.chat, { text: `✅ Succesfully Downloaded *${videoTitle}*`, edit: msg.key });
       } catch (err) {
-        m.reply('❌ Error downloading audio.');
+        console.error('[play]', err.message);
+        m.reply('❌ Could not fetch that song: ' + (err.message || 'unknown error').slice(0, 120));
       }
     }
   },

@@ -438,7 +438,7 @@ module.exports = [
   handler: async (client, m, { reply }) => {
 
     const REPO  = require('../brand').repo;
-    if (!REPO) return reply('ℹ️ Source zip is not configured. Owner: set GITHUB_REPO=yourname/smiley-cymor-md');
+    if (!REPO) return reply('ℹ️ Source zip is not configured. Owner: set GITHUB_REPO=cymortechservices/smileycymormd');
     const url   = `https://github.com/${REPO}/archive/refs/heads/main.zip`;
 
     await reply('⏳ Fetching bot source code ZIP...');

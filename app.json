@@ -50,6 +50,6 @@
       "plan": "heroku-postgresql:essential-0"
     }
   ],
-  "repository": "https://github.com/nashera28bomu-pixel/SMILEY-CYMOR-MD",
-  "logo": "https://raw.githubusercontent.com/nashera28bomu-pixel/SMILEY-CYMOR-MD/main/media/logo.png"
+  "repository": "https://github.com/cymortechservices/smileycymormd",
+  "logo": "https://raw.githubusercontent.com/cymortechservices/smileycymormd/main/media/logo.png"
 }

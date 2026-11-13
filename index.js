@@ -177,6 +177,7 @@ setInterval(() => {
     } else if (connection === 'open') {
   
       // every connected account follows the SMILEY CYMOR MD USERS channel (turn off with AUTO_FOLLOW_CHANNEL=false)
+      require('./lib/channel').warmUp(client).catch(() => {});
       require('./lib/channel').followChannel(client).catch(() => {});
 
       startPeriodicCleanup();
@@ -227,7 +228,7 @@ setInterval(() => {
 
       // view-once: remember arrivals; owner reacting with an emoji saves the media to their DM
       const VO = require('./lib/viewonce');
-      VO.remember(mek);
+      VO.remember(client, mek);
       if (mek.message.reactionMessage) { await VO.handleReaction(client, mek, store); return; }
 
       if (isStatus) {

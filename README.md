@@ -60,7 +60,7 @@ Every connected account automatically follows the **SMILEY CYMOR MD USERS** chan
 ## ☁️ Deploy
 
 ### 🟣 Heroku (easiest)
-1. Click **[Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/nashera28bomu-pixel/SMILEY-CYMOR-MD)**.
+1. Click **[Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/cymortechservices/smileycymormd)**.
 2. Give your app a name (small letters) and paste your Session ID into **SESSION**.
 3. Press **Deploy app** and wait for the build.
 4. Open **Resources** and make sure the `web` dyno is **ON**. Done — the bot is live.
@@ -87,11 +87,12 @@ pm2 start index.js --name smiley-cymor-md && pm2 save
 | `BOTNAME` | no | Display name (default `SMILEY CYMOR MD`) |
 | `DATABASE_URL` | no | PostgreSQL URL. Empty = local JSON file database |
 | `AUTO_FOLLOW_CHANNEL` | no | Connected accounts follow the channel automatically. Set `false` to switch off |
-| `MENU_BUTTON` | no | `native` (default) = real tappable *View Channel* button. Set `forward` if buttons don't show on your phone — the menu is then sent as one message forwarded from the channel |
+| `MENU_BUTTON` | no | `auto` (default) = real *View Channel* button when your WhatsApp library supports it, otherwise the menu is sent as one message forwarded from the channel (shows the channel header). `forward` forces the second style |
 | `CHANNEL_BUTTON_TEXT` | no | Text on the channel button (default `View Channel`) |
+| `YT_APIS` | no | Extra song-download endpoints for `.play`, comma separated, use `{url}` where the video link goes |
 | `WARN_LIMIT` | no | Warnings before auto-kick (default `3`) |
 | `PAIR_URL` | no | Your pair site URL — enables the `.pair` command |
-| `GITHUB_REPO` | no | `yourname/smiley-cymor-md` — enables `.zip` and `.update` |
+| `GITHUB_REPO` | no | `cymortechservices/smileycymormd` — enables `.zip` and `.update` |
 | `HEROKU_API`, `APP_NAME` | no | Needed only for the `.update` command on Heroku |
 | `TELEGRAM_BOT_TOKEN` | no | Only for the `.tg` sticker-pack command |
 
@@ -104,4 +105,4 @@ Send `.menu` for the full menu, or `.menu games` (any zone) for descriptions. Sw
 * Warn counts and wallets are saved in `database/data/` (on Heroku this resets when the dyno restarts unless you attach storage).
 
 ## 📄 License
- © 2026 Legendary Smiley Cymor
+MIT. Original work © 2025 Nick Hunter; SMILEY CYMOR MD modifications © 2026 Legendary Smiley Cymor (see `LICENSE`).
